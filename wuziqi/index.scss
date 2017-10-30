@@ -1,0 +1,260 @@
+@mixin auto{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@mixin center{
+  position: absolute;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+}
+@mixin centers($w,$h){
+  position: absolute;
+  left:50%;
+  top:50%;
+  margin-left:-$h/2;
+  margin-top:-$w/2;
+}
+@mixin circle($r){
+  -webkit-border-radius: $r;
+  -moz-border-radius: $r;
+  border-radius: $r;
+}
+
+
+$width:600px;
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+body{
+  overflow: hidden;
+  background: url("bg.jpg") no-repeat center / cover;
+
+}
+.qipan{
+  width: $width;
+  height: $width;
+  @include center;
+  background: url("wuziqi.jpg") no-repeat center / cover;
+  background-size: 105% 105%;
+  box-shadow:0 0 20px 5px #484848;
+
+  .qizi{
+    width: $width / 15 - 10px;
+    height: $width / 15 - 10px;
+    float: left;
+    margin:5px;
+    position: relative;
+    z-index: 9999;
+    @include circle(50%);
+  }
+  .qizi.hei{
+    background: #000;
+  }
+  .qizi.bai{
+    background: #fff;
+  }
+  .hang{
+    width:$width - $width/15;
+    height:1px;
+    background: #000;
+    position: absolute;;
+    left:$width/15 / 2;
+    opacity: 0;
+  }
+  .shu{
+    height:$width - $width/15;
+    width:1px;
+    background: #000;
+    position: absolute;;
+    top:$width/15 / 2;
+    opacity: 0;
+
+
+
+  }
+
+
+
+
+  @for $i from 0 through 14{
+    div:nth-of-type(#{$i+1}){
+      top:$width /30 +$i *$width /15;
+      animation: shud 1s ease $i*0.1s forwards;
+    }
+    span:nth-of-type(#{$i+1}){
+      left:$width /30 +$i *$width /15;
+      animation: hengd 1s ease $i*0.1s forwards;
+    }
+  }
+
+  i{
+    position: absolute;
+    width: $width/60/2;
+    height:$width/60/2;
+    background: #000;
+    @include centers(width,height);
+    @include circle(50%);
+    transform:translate3d(-50%,-50%,0);
+    animation:diaoluo 2s ease;
+
+    @for $i from 1 through 5{
+      &:nth-of-type(#{$i}){
+        animation-delaye: $i *0.1s ;
+      }
+    }
+    &:nth-of-type(1){
+      left:3.5*($width/15);
+      top:3.5*($width/15);
+    }
+    &:nth-of-type(2){
+      left:11.5*($width/15);
+      top:3.5*($width/15);
+    }
+    &:nth-of-type(3){
+      left:7.5*($width/15);
+      top:7.5*($width/15);
+    }
+    &:nth-of-type(4){
+      left:3.5*$width/15;
+      top:11.5*$width/15;
+    }
+    &:nth-of-type(5){
+      left:11.5*($width/15);
+      top:11.5*($width/15);
+    }
+  }
+}
+
+@keyframes diaoluo {
+  0%{
+    transform: translate3d(0,-800px,0);
+    opacity: 0;
+  }
+  100%{
+    transform: translate3d(-50%,-50%,0);
+    opacity: 1;
+  }
+}
+
+@keyframes hengd{
+  0%{
+    transform: translate3d(0,-1000px,0);
+    opacity: 0;
+  }
+  100%{
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+}
+@keyframes shud{
+  0%{
+    transform: translate3d(-1000px,0,0);
+    opacity: 0;
+  }
+  100%{
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+}
+
+.baipi{
+  width:300px;
+  height:150px;
+  background: rgba(112,173,114,0.6);
+  font-size: 40px;
+  text-align: center;
+  line-height: 150px;
+  position: absolute;
+  left:50px;
+  top:50%;
+  margin-top: -75px;
+  border-radius: 10px;
+  opacity: 0;
+}
+.heipi{
+  width:300px;
+  height:150px;
+  background: rgba(112,173,114,0.6);
+  font-size: 40px;
+  text-align: center;
+  line-height: 150px;
+  position: absolute;
+  right:50px;
+  top:50%;
+  margin-top: -75px;
+  border-radius: 10px;
+  opacity: 0;
+}
+
+
+.start{
+  width: 100px;
+  height: 50px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px;
+  background: rgba(112,173,114,0.6);
+  position: absolute;
+  left:50%;
+  top:0;
+  margin-left: 25px;
+}
+.chong{
+  width: 100px;
+  height: 50px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px;
+  background: rgba(112,173,114,0.6);
+  position: absolute;
+  left:50%;
+  top:0;
+  margin-left: -125px;
+}
+.renji{
+  width: 100px;
+  height: 50px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px;
+  background: rgba(112,173,114,0.6);
+  position: absolute;
+  left:50%;
+  top:0;
+  margin-left: 200px;
+}
+.wanjia{
+  width: 100px;
+  height: 50px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px;
+  background: rgba(112,173,114,0.6);
+  position: absolute;
+  left:50%;
+  top:0;
+  margin-left: -300px;
+}
+
+
